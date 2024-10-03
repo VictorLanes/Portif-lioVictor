@@ -19,29 +19,156 @@
         </nav>
         <section id="contact">
             <h2 data-aos="fade-down">Entre em Contato</h2>
-            <form action="#" method="post" data-aos="fade-up">
+            
+            <!-- Opção de escolher entre WhatsApp ou Email -->
+            <div data-aos="fade-up" class="contact-options">
+                <p>Escolha como deseja entrar em contato:</p>
+                <a href="https://wa.me/5521987754974" target="_blank" class="btn">WhatsApp: (21) 98775-4974</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lanesvictor99@gmail.com&su=Contato%20via%20portfólio&body=Olá%2C%20Victor!" target="_blank" class="btn">Email: lanesvictor99@gmail.com</a>
+            </div>
+
+            <!-- Formulário para enviar mensagem via WhatsApp ou Email -->
+            <form id="contact-form" data-aos="fade-up">
                 <label for="name">Nome:</label>
                 <input type="text" id="name" name="name" required>
                 
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
-
                 <label for="message">Mensagem:</label>
                 <textarea id="message" name="message" required></textarea>
 
-                <button type="submit" class="btn">Enviar</button>
+                <label for="contact-method">Escolha o método de envio:</label>
+                <select id="contact-method" name="contact-method" required>
+                    <option value="whatsapp">Enviar via WhatsApp</option>
+                    <option value="email">Enviar via Email</option>
+                </select>
+
+                <button type="button" class="btn" onclick="sendMessage()">Enviar</button>
             </form>
         </section>
 
     </header>
 
     <footer>
-        <p data-aos="fade-in">© 2024 Victor Lanes</p>
+        <p data-aos="fade-in">© 2024 Meu Nome</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+
+        function sendMessage() {
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            const contactMethod = document.getElementById('contact-method').value;
+
+            const whatsappNumber = "5521987754974";
+            const emailAddress = "lanesvictor99@gmail.com";
+
+            if (contactMethod === 'whatsapp') {
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Olá, meu nome é ${name}. Mensagem: ${message}`;
+                window.open(whatsappUrl, '_blank');
+            } else if (contactMethod === 'email') {
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=Contato%20de%20${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
+                window.open(gmailUrl, '_blank');
+            }
+        }
     </script>
+
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-options {
+            margin-bottom: 20px;
+        }
+
+        .contact-options a {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn {
+            background-color: #f1c40f;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #f1c40f;
+        }
+
+        button {
+            background-color: #f1c40f;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e67e22;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 </body>
 </html>
